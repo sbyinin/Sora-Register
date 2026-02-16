@@ -607,7 +607,7 @@ document.getElementById("btn-add-phone").addEventListener("click", function() {
 });
 document.getElementById("btn-batch-import-phone").addEventListener("click", function() {
   showModal(
-    "<p>每行一个手机号，可绑定次数使用系统设置中的「每个手机号可绑定次数」。</p>" +
+    "<p>每行一个手机号，可绑定次数使用系统设置中的「手机号绑定数」。</p>" +
     "<textarea id=\"phone-import-lines\" rows=\"12\" style=\"width:100%;padding:0.5rem;font-family:monospace;background:var(--bg-input);border:1px solid var(--border);border-radius:8px;\"></textarea>" +
     "<button type=\"button\" id=\"phone-import-submit\">导入</button>"
   );
@@ -690,7 +690,7 @@ document.getElementById("btn-sms-api-get-numbers").addEventListener("click", fun
   });
 });
 
-// 批量生成 - 仪表盘与日志
+// 批量注册 - 仪表盘与日志
 function loadDashboard() {
   api("/api/dashboard").then(function(d) {
     document.getElementById("dash-today").textContent = d.today_registered != null ? d.today_registered : 0;
@@ -730,7 +730,7 @@ function loadLogs() {
   });
 }
 document.getElementById("btn-start-register").addEventListener("click", function() {
-  toast("开始注册功能开发中", "info");
+  toast("开启注册功能开发中", "info");
 });
 document.getElementById("btn-start-bind-phone").addEventListener("click", function() {
   toast("开始绑定手机功能开发中", "info");
@@ -747,7 +747,7 @@ document.getElementById("btn-refresh-dashboard").addEventListener("click", funct
 var SETTINGS_KEYS = [
   "sms_api_url", "sms_api_key", "sms_openai_service", "sms_max_price", "thread_count", "proxy_url", "proxy_api_url",
   "bank_card_api_url", "bank_card_api_key", "bank_card_api_platform", "email_api_url", "email_api_key", "email_api_default_type",
-  "captcha_api_url", "captcha_api_key", "card_use_limit", "phone_bind_limit"
+  "captcha_api_url", "captcha_api_key", "retry_count", "card_use_limit", "phone_bind_limit"
 ];
 function loadSettings() {
   api("/api/settings").then((d) => {
@@ -810,5 +810,5 @@ document.getElementById("current-user").addEventListener("click", function() {
   });
 });
 
-// Default tab（登录后默认打开批量生成）
+// Default tab（登录后默认打开批量注册）
 if (token) showPage("logs");

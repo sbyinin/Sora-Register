@@ -18,6 +18,7 @@ env/
 .env
 .env.local
 *.pem
+.git_commit_msg.txt
 
 # 日志与临时
 *.log

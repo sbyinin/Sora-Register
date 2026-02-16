@@ -1,4 +1,4 @@
-"""批量生成页仪表盘：统计与 API 配置状态"""
+"""批量注册页仪表盘：统计与 API 配置状态"""
 from fastapi import APIRouter, Depends
 from app.routers.auth import get_current_user
 from app.database import get_db, init_db

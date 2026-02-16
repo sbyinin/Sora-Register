@@ -26,7 +26,7 @@
       <aside class="sidebar">
         <div class="logo">Sora 批量注册</div>
         <nav class="nav">
-          <a href="#" data-tab="logs">批量生成</a>
+          <a href="#" data-tab="logs">批量注册</a>
           <a href="#" data-tab="accounts">账号管理</a>
           <a href="#" data-tab="emails">邮箱管理</a>
           <a href="#" data-tab="bank-cards">银行卡管理</a>
@@ -99,7 +99,7 @@
         </section>
         <section id="panel-phones" class="panel hidden">
           <h2>手机号管理</h2>
-          <p class="panel-desc">每个手机号的可绑定次数在 <a href="#" id="link-to-settings-phones">系统设置</a> 中配置「每个手机号可绑定次数」；批量导入时自动应用该默认值。</p>
+          <p class="panel-desc">手机号绑定数在 <a href="#" id="link-to-settings-phones">系统设置</a> 中配置「手机号绑定数」；批量导入时自动应用该默认值。</p>
           <div class="email-api-card">
             <h3>Hero-SMS 接码（OpenAI）</h3>
             <p class="email-api-desc">需在系统设置中配置手机号接码 API 地址与 KEY。<a href="https://hero-sms.com/cn/api" target="_blank" rel="noopener">API 文档</a></p>
@@ -131,10 +131,10 @@
           </div>
         </section>
         <section id="panel-logs" class="panel hidden">
-          <h2>批量生成</h2>
+          <h2>批量注册</h2>
           <div class="dashboard-card">
             <div class="dashboard-actions">
-              <button type="button" id="btn-start-register" class="btn-dash btn-primary">开始注册</button>
+              <button type="button" id="btn-start-register" class="btn-dash btn-primary">开启注册</button>
               <button type="button" id="btn-start-bind-phone" class="btn-dash btn-secondary">开始绑定手机</button>
               <button type="button" id="btn-start-plus" class="btn-dash btn-secondary">开始开通 Plus</button>
             </div>
@@ -193,9 +193,14 @@
             </div>
             <div class="settings-card">
               <h3>运行参数</h3>
-              <label>线程数 <input type="number" name="thread_count" min="1" placeholder="1" /></label>
-              <label>每卡使用次数 <input type="number" name="card_use_limit" min="1" placeholder="1" /></label>
-              <label>每个手机号可绑定次数 <input type="number" name="phone_bind_limit" min="1" placeholder="1" /></label>
+              <div class="settings-row-2">
+                <label>线程数 <input type="number" name="thread_count" min="1" placeholder="1" /></label>
+                <label>重试次数 <input type="number" name="retry_count" min="1" max="5" placeholder="2" title="单条注册失败后重试次数，1-5" /></label>
+              </div>
+              <div class="settings-row-2">
+                <label>每卡使用次数 <input type="number" name="card_use_limit" min="1" placeholder="1" /></label>
+                <label>手机号绑定数 <input type="number" name="phone_bind_limit" min="1" placeholder="1" /></label>
+              </div>
             </div>
             <div class="settings-submit">
               <button type="submit">保存全部</button>

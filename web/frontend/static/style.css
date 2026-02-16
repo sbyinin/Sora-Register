@@ -367,7 +367,7 @@ body {
 .log-list .log-line:last-child { border-bottom: none; }
 .log-list .log-line .ts { color: var(--text-muted); margin-right: 0.5rem; }
 
-/* 批量生成 - 仪表盘 */
+/* 批量注册 - 仪表盘 */
 .dashboard-card {
   background: var(--bg-card);
   border: 1px solid var(--border);
@@ -551,6 +551,14 @@ body {
   font-size: 13px;
 }
 .settings-card label:last-of-type { margin-bottom: 0; }
+.settings-row-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+.settings-row-2:last-of-type { margin-bottom: 0; }
+.settings-row-2 label { margin-bottom: 0; }
 .settings-card input {
   width: 100%;
   padding: 0.5rem 0.75rem;

@@ -6,6 +6,14 @@ from app.database import get_db, init_db
 router = APIRouter(prefix="/api/settings", tags=["settings"])
 
 
+def _clamp_retry(value: str) -> str:
+    try:
+        n = int((value or "").strip())
+        return str(max(1, min(5, n)))
+    except (ValueError, TypeError):
+        return "2"
+
+
 class LoginUpdateBody(BaseModel):
     admin_username: str = ""
     admin_password: str = ""
@@ -17,6 +25,7 @@ class SettingsBody(BaseModel):
     sms_openai_service: str = "openai"
     sms_max_price: str = "0.55"
     thread_count: str = "1"
+    retry_count: str = "2"
     proxy_url: str = ""
     proxy_api_url: str = ""
     bank_card_api_url: str = ""
@@ -59,6 +68,7 @@ def update_settings(body: SettingsBody, username: str = Depends(get_current_user
             ("sms_openai_service", (body.sms_openai_service or "dr").strip()),
             ("sms_max_price", (body.sms_max_price or "0.55").strip()),
             ("thread_count", body.thread_count),
+            ("retry_count", _clamp_retry(body.retry_count)),
             ("proxy_url", body.proxy_url),
             ("proxy_api_url", body.proxy_api_url),
             ("bank_card_api_url", body.bank_card_api_url),
